@@ -42,7 +42,7 @@ export const EDIT_FAIL = 'EDIT_FAIL'
 export const editData = friend => dispatch => {
    dispatch({ type: EDIT_DATA })
    axiosWithAuth()
-      .put(`/friends/${friend.id}`)
+      .put(`/friends/${friend.id}`, friend)
       .then(res => {
          console.log(res.data)
          dispatch({ type: EDIT_SUCCESS, payload: res.data })

@@ -22,6 +22,7 @@ const FriendDashboard = (
    return (
       <div>
          <h2>Dashboard</h2>
+         <Link to={'/friend-form'}><button>Add Friends</button></Link>
          {isFetching ? <h2>Loading...</h2> : error ? <h2>FETCH ERROR</h2> :
             friends.map(friend => (
                <Link key={friend.id} to={`/friends/${friend.id}`}><Friend friend={friend} /></Link>

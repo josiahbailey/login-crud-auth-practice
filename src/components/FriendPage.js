@@ -8,9 +8,17 @@ import { setMember, toggleEdit } from '../actions/editActions'
 const FriendForm = (
    { friend, isFetching, error, deleteData, setMember, toggleEdit, getFriend }) => {
    const { name, age, email } = friend
-
    const match = useRouteMatch()
    const id = match.params.id
+
+   const handleEdit = e => {
+      toggleEdit(true)
+      setMember(friend)
+   }
+
+   const deleteFriend = e => {
+      deleteData(friend)
+   }
 
    useEffect(() => {
       getFriend(id)
@@ -20,8 +28,8 @@ const FriendForm = (
       <div>
          {isFetching ? <h2>Loading...</h2> : error ? <h2>REQUEST ERROR</h2> :
             <div>
-               <button>Edit</button>
-               <button>X</button><br />
+               <Link to='/friend-form'><button onClick={handleEdit}>Edit</button></Link>
+               <Link to='/friends'><button onClick={deleteFriend}>X</button><br /></Link>
                <h3>Name: {name}</h3>
                <h3>Age: {age}</h3>
                <h3>Email: {email}</h3>
