@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 
 import FriendDashboard from './components/FriendDashboard'
 import LoginForm from './components/LoginForm'
+import FriendPage from './components/FriendPage'
 
 import { PrivateRoute } from './utils/PrivateRoute'
 
@@ -15,6 +16,7 @@ function App() {
          </Route>
          <Route exact path='/login' component={LoginForm} />
          <PrivateRoute exact path='/friends' component={FriendDashboard} />
+         <PrivateRoute exact path='/friends/:id' component={FriendPage} />
       </div>
    );
 }

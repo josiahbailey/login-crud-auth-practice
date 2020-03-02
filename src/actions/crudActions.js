@@ -70,3 +70,21 @@ export const deleteData = friend => dispatch => {
          dispatch({ type: DELETE_FAIL, payload: err })
       })
 }
+
+export const GET_FRIEND = 'GET_FRIEND'
+export const GET_FRIEND_FAIL = 'GET_FRIEND_FAIL'
+export const GET_FRIEND_SUCCESS = 'GET_FRIEND_SUCCESS'
+
+export const getFriend = id => dispatch => {
+   dispatch({ type: GET_FRIEND })
+   axiosWithAuth()
+      .get(`/friends/${id}`)
+      .then(res => {
+         console.log(res)
+         dispatch({ type: GET_FRIEND_SUCCESS, payload: res.data })
+      })
+      .catch(err => {
+         console.log(err)
+         dispatch({ type: GET_FRIEND_FAIL, payload: err })
+      })
+}

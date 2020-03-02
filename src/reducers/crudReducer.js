@@ -10,12 +10,20 @@ import {
    EDIT_FAIL,
    DELETE_DATA,
    DELETE_SUCCESS,
-   DELETE_FAIL
+   DELETE_FAIL,
+   GET_FRIEND,
+   GET_FRIEND_FAIL,
+   GET_FRIEND_SUCCESS
 } from '../actions/crudActions'
 
 
 const initialState = {
    friends: [],
+   friend: {
+      name: '',
+      age: 0,
+      email: ''
+   },
    isFetching: false,
    error: '',
    postError: '',
@@ -96,6 +104,24 @@ export const crudReducer = (state = initialState, action) => {
             ...state,
             isFetching: false,
             deleteError: action.payload
+         }
+      case GET_FRIEND:
+         return {
+            ...state,
+            isFetching: true
+         }
+      case GET_FRIEND_SUCCESS:
+         return {
+            ...state,
+            isFetching: false,
+            friend: action.payload,
+            error: ''
+         }
+      case GET_FRIEND_FAIL:
+         return {
+            ...state,
+            isFetching: false,
+            error: action.payload
          }
       default:
          return state
